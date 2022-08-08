@@ -41,6 +41,16 @@ public class BlogController {
 
     @PostMapping("login")
     public String indexPost(@ModelAttribute("User") User user, Model model){
+        boolean idcheck = userRepository.existsByUserID(user.getUserID());
+        log.info(String.valueOf(idcheck));
+        if(idcheck){
+            //아이디가 중복일때
+            model.addAttribute("data","중복아이디");
+            model.addAttribute("thid","forgot");
+            return "login";
+        }
+        model.addAttribute("data","아이디 등록완료");
+        model.addAttribute("thid","forgot2");
         userRepository.save(user);
         log.info(user + "저장");
         log.info(user.getUserID() + "/" + user.getUserPW());

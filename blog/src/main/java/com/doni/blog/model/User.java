@@ -32,4 +32,5 @@ public class User {
         this.userID = userID;
         this.userPW = userPW;
     }
+
 }
