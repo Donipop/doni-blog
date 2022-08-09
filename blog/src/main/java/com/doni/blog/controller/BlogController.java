@@ -2,8 +2,12 @@ package com.doni.blog.controller;
 
 
 import com.doni.blog.model.User;
+import com.doni.blog.model.UserInfo;
+import com.doni.blog.model.UserRole;
 import com.doni.blog.repository.UserRepository;
+import com.doni.blog.utill.UserSession;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,12 +16,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 @Slf4j
 @Controller
 public class BlogController {
-
-    @Autowired
-    private UserRepository userRepository;
 
     @GetMapping("hello")
     public String helloGET(@RequestParam(name="data") String data,Model model){
@@ -29,32 +35,27 @@ public class BlogController {
     public String helloPost(User user){
         //userRepository.save(user);
         log.info(user + "저장");
-        log.info(user.getUserID() + "/" + user.getUserPW());
+        log.info(user.getUserName() + "/" + user.getUserPw());
         return "hello";
     }
 
-    @GetMapping("login")
-    public String indexGET(Model model, User user){
-        model.addAttribute("User",user);
-        return "login";
+
+
+    /*@GetMapping("main")
+    public String getMain(Model model, HttpServletRequest request){
+        log.info(String.valueOf(userSession.getSession(request)));
+        model.addAttribute("data",userInfo.getUserid());
+        log.info("main");
+        return "main";
     }
 
-    @PostMapping("login")
-    public String indexPost(@ModelAttribute("User") User user, Model model){
-        boolean idcheck = userRepository.existsByUserID(user.getUserID());
-        log.info(String.valueOf(idcheck));
-        if(idcheck){
-            //아이디가 중복일때
-            model.addAttribute("data","중복아이디");
-            model.addAttribute("thid","forgot");
-            return "login";
-        }
-        model.addAttribute("data","아이디 등록완료");
-        model.addAttribute("thid","forgot2");
-        userRepository.save(user);
-        log.info(user + "저장");
-        log.info(user.getUserID() + "/" + user.getUserPW());
-        return "login";
-    }
+    @GetMapping("main2")
+    public String getMain2(Model model,HttpServletRequest request){
+        log.info(String.valueOf(userSession.getSession(request)));
+        model.addAttribute("data",userInfo.getUserid());
+        log.info("main2");
+        return "main2";
+    }*/
+
 
 }
