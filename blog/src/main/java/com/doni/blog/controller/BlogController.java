@@ -39,23 +39,4 @@ public class BlogController {
         return "hello";
     }
 
-
-
-    /*@GetMapping("main")
-    public String getMain(Model model, HttpServletRequest request){
-        log.info(String.valueOf(userSession.getSession(request)));
-        model.addAttribute("data",userInfo.getUserid());
-        log.info("main");
-        return "main";
-    }
-
-    @GetMapping("main2")
-    public String getMain2(Model model,HttpServletRequest request){
-        log.info(String.valueOf(userSession.getSession(request)));
-        model.addAttribute("data",userInfo.getUserid());
-        log.info("main2");
-        return "main2";
-    }*/
-
-
 }

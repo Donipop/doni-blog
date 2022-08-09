@@ -3,6 +3,7 @@ package com.doni.blog.controller;
 import com.doni.blog.model.User;
 import com.doni.blog.model.UserInfo;
 import com.doni.blog.model.UserRole;
+import com.doni.blog.repository.MemoryUserRepository;
 import com.doni.blog.repository.UserRepository;
 import com.doni.blog.utill.UserSession;
 import lombok.extern.slf4j.Slf4j;
@@ -21,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 public class LoginController {
     @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository = new MemoryUserRepository();
     UserSession userSession = new UserSession();
     @Resource
     private UserInfo userInfo;
@@ -66,4 +67,21 @@ public class LoginController {
         log.info(user.getUserName() + "/" + user.getUserPw());
         return "login";
     }
+
+    @GetMapping("main")
+    public String getMain(Model model, HttpServletRequest request){
+        log.info(String.valueOf(userSession.getSession(request)));
+        model.addAttribute("data",userInfo.getUserid());
+        log.info("main");
+        return "main";
+    }
+
+    @GetMapping("main2")
+    public String getMain2(Model model,HttpServletRequest request){
+        log.info(String.valueOf(userSession.getSession(request)));
+        model.addAttribute("data",userInfo.getUserid());
+        log.info("main2");
+        return "main2";
+    }
+
 }
