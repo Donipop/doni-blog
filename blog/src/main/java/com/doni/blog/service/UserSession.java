@@ -1,10 +1,7 @@
-package com.doni.blog.utill;
+package com.doni.blog.service;
 
-import com.doni.blog.BlogInterceptor;
 import com.doni.blog.model.User;
-import com.doni.blog.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.ui.Model;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -15,7 +12,6 @@ import java.util.UUID;
 
 @Slf4j
 public class UserSession {
-    private UserRepository userRepository;
     public String createSession(User user, HttpServletRequest request,HttpServletResponse response){
         String uuid = UUID.randomUUID().toString();
         request.setAttribute("SID",uuid);
@@ -37,10 +33,9 @@ public class UserSession {
             return false;
         }
         User user = (User) session.getAttribute("SID");
-        log.info("getsession : " + getCookie(request));
+        log.info("GetCookie : [{}]",getCookie(request));
+        log.info("GetSession : [{}]",session.getAttribute("SID"));
         log.info(user.getUserName());
-        //User checkUserId = userRepository.findByUserID();
-        //log.info(checkUserId.getUserPW());
         return true;
     }
 
