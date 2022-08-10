@@ -20,11 +20,14 @@ import java.util.Objects;
 @Slf4j
 @Controller
 public class LoginController {
-    @Autowired
-    private final UserService userService = new UserService();
+    private final UserService userService;
     UserSession userSession = new UserSession();
     @Resource
     private UserInfo userInfo;
+    @Autowired
+    public LoginController(UserService userService) {
+        this.userService = userService;
+    }
 
     @GetMapping("login")
     public String indexGET(Model model, User user){
@@ -38,7 +41,7 @@ public class LoginController {
         if(Objects.equals(valueUserLogin, "로그인 성공")){
             model.addAttribute("data", "로그인성공");
             model.addAttribute("thid", "forgot2");
-            return "rediret:blog";
+            return "blog";
         }else{
             model.addAttribute("data", valueUserLogin);
             model.addAttribute("thid", "forgot");

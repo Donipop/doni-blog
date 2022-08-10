@@ -3,7 +3,6 @@ package com.doni.blog.service;
 import com.doni.blog.model.User;
 import com.doni.blog.model.UserInfo;
 import com.doni.blog.model.UserRole;
-import com.doni.blog.repository.MemoryUserRepository;
 import com.doni.blog.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,11 +16,14 @@ import java.util.Objects;
 @Service
 @Slf4j
 public class UserService {
-    @Autowired
-    private final UserRepository userRepository = new MemoryUserRepository();
+    private final UserRepository userRepository;
     UserSession userSession = new UserSession();
     @Resource
     private UserInfo userInfo;
+    @Autowired
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     public String userSignup(User user){
         //공백제거

@@ -17,8 +17,12 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 public class SignUpController {
 
+    private final UserService userService;
     @Autowired
-    private final UserService userService = new UserService();
+    public SignUpController(UserService userService) {
+        this.userService = userService;
+    }
+
     @GetMapping("signup")
     public String getSignup(User user,Model model){
         model.addAttribute("User",user);
