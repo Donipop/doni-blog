@@ -18,7 +18,7 @@ header{
     border-bottom: 1px solid #000;
 }
 .container-userinfo{
-    display: flex;
+    /*display: flex;
     width: 100px;
     height: 30px;
     float: right;
@@ -26,31 +26,93 @@ header{
     margin-right: 50px;
     border: 1px solid #aaa;
     border-radius: 4px;
+    padding: .5em .5em 0;*/
+    width: 100px;
+    margin-right: 50px;
+    margin-top: 20px;
+    float: right;
     padding: .5em .5em 0;
-}
-.userinfo{
     display: flex;
-
+    text-align: left;
 }
 .user-info-ul{
     display: block;
-    width: 75px;
-    margin-left: -50px;
+    width: 100px;
+    margin-left: -20px;
+    padding: 10px;
     border: 1px solid #aaa;
     border-radius: 4px;
+    list-style: none;
 }
+li{
+    cursor: pointer;
+}
+.drop-item{
+    display: block;
+    padding: 4px 0 4px 0;
+    overflow: hidden;
+    color: #aaa;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+a{
+    text-decoration-line: none;
+    text-decoration: none; 
+}
+a:hover{
+    background-color: #aaa;
+    color: #010409;
+}
+/*클릭한후*/
+a:visited{
+    text-decoration: none; 
+    color: #aaa;
+}
+a:focus { text-decoration: none;}
+a:active{ text-decoration: none;}
 details{
-    position: relative;
-    left: 15px;
-    top: 7px;
-    width: 8px;
-    height: 8px;
-    transform: rotate(90deg);
+    width: 100px;
+    height: 30px;
+    margin: 0;
+    padding: 0;
+    transform: rotate(0deg);
+    /*border: 1px solid #aaa;
+    border-radius: 4px;*/
 }
 details[open]{
-    left: 6px;
-    top: 0;
     transform: rotate(0deg);
+}
+summary{
+    position: relative;
+    list-style: none;
+    display: list-item;
+    cursor: pointer;
+    
+}
+*{
+    box-sizing: border-box;
+}
+.container-content{
+    text-align: center;
+    display: block;
+    margin-top: 0%;
+    margin-left: 0%;
+    width: 70%;
+    
+
+}
+.content-box{
+    margin-top: 0;
+    list-style: none;
+    display: block;
+    
+}
+.licontent{
+    margin-top: 10px;
+    width: 500px;
+    padding: 50px 0 50px 0;
+    border: 1px solid #aaa;
+    border-radius: 4px;
 }
 /*.arrow{
     position: relative;
