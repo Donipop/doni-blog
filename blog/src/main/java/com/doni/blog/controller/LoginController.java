@@ -38,13 +38,17 @@ public class LoginController {
     @PostMapping("login")
     public String indexPost(@ModelAttribute("User") User user, Model model, HttpServletRequest request, HttpServletResponse response){
         String valueUserLogin = userService.userLogin(user,request,response);
+        
         if(Objects.equals(valueUserLogin, "로그인 성공")){
-            model.addAttribute("data", "로그인성공");
-            model.addAttribute("thid", "forgot2");
+            //model.addAttribute("data", "로그인성공");
+           // model.addAttribute("thid", "forgot2");
+            log.info("로그인성공");
             return "blog";
         }else{
-            model.addAttribute("data", valueUserLogin);
-            model.addAttribute("thid", "forgot");
+            model.addAttribute("data",true);
+            model.addAttribute("datatext", valueUserLogin);
+            //model.addAttribute("thid", "forgot");
+            log.info("로그인실패" + valueUserLogin);
         }
         return "login";
     }

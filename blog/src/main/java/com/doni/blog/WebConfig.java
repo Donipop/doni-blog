@@ -11,6 +11,6 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addInterceptor(new BlogInterceptor())
                 .addPathPatterns("/**")//적용할 url
                 .excludePathPatterns("/login","/signup")
-                .excludePathPatterns("/css/**");//제외할 url /login/** == /login/하위url모두 제외
+                .excludePathPatterns("/css/**","/js/**","/img/**","/*.icon");//제외할 url /login/** == /login/하위url모두 제외
     }
 }

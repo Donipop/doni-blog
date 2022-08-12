@@ -33,12 +33,15 @@ public class SignUpController {
     public String postSignup(@ModelAttribute("User") User user,Model model,HttpServletResponse response,HttpServletRequest request){
         String valueUserService = userService.userSignup(user);
         if(valueUserService.equals("가입완료")){
-            model.addAttribute("data","가입완료");
+            /*model.addAttribute("data","가입완료");
             model.addAttribute("thid", "forgot2");
-            model.addAttribute("thhref", "./login");
+            model.addAttribute("thhref", "./login");*/
+            model.addAttribute("data2",true);
+            model.addAttribute("datatext","가입완료");
         }else{
-            model.addAttribute("data",valueUserService);
-            model.addAttribute("thid", "forgot");
+            model.addAttribute("data",true);
+            model.addAttribute("datatext",valueUserService);
+           // model.addAttribute("thid", "forgot");
         }
         return "signup";
     }
