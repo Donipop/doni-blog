@@ -35,7 +35,7 @@ public class UserSession {
         User user = (User) session.getAttribute("SID");
         log.info("GetCookie : [{}]",getCookie(request));
         log.info("GetSession : [{}]",session.getAttribute("SID"));
-        log.info(user.getUserName());
+        log.info("USER NAME : [{}]", user.getUserName());
         return true;
     }
 

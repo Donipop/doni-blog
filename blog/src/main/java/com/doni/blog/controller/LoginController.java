@@ -43,6 +43,8 @@ public class LoginController {
             //model.addAttribute("data", "로그인성공");
            // model.addAttribute("thid", "forgot2");
             log.info("로그인성공");
+            model.addAttribute("username", userInfo.getUserName());
+            model.addAttribute("logincheck",true);
             return "blog";
         }else{
             model.addAttribute("data",true);

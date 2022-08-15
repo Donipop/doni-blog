@@ -20,7 +20,14 @@ public class BlogController {
     private UserInfo userInfo;
     @GetMapping("blog")
     public String getBlog(Model model){
-        model.addAttribute("username", userInfo.getUserName());
+        if(userInfo.getUserName() !=null){
+            model.addAttribute("username", userInfo.getUserName());
+            model.addAttribute("logincheck",true);
+        }else{
+            model.addAttribute("username", "로그인 안했을껄껄껄안녕하신가");
+            model.addAttribute("logincheck",false);
+        }
+
 
         return "blog";
     }

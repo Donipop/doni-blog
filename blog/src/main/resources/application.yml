@@ -20,6 +20,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: doni
     password: 1234
+
   thymeleaf:
     prefix=classpath: templates/
     suffix: .html
@@ -27,3 +28,7 @@ spring:
     cache: false
     mvc:
       static-path-pattern: "/static/**"
+
+  devtools:
+    restart:
+      enabled: true

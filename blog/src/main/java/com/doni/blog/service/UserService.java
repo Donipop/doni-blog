@@ -40,7 +40,6 @@ public class UserService {
         user.setUserRole(UserRole.User);
         userRepository.save(user);
 
-
         return "가입완료";
     }
 
