@@ -1,44 +1,42 @@
 package com.doni.blog.model;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
-import javax.xml.crypto.Data;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
-@Table(name = "Content")
 public class ContentVo implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(length = 200,nullable = false)
+    @Column(length = 200,nullable = false,name = "content_id")
     private long id;
     @Column
     private String title;
-    @Column
+    @Lob
     private String content;
-
-
-    private String writer;//글작성자
+    @JoinColumn(name="userid")
+    @ManyToOne(targetEntity = User.class,fetch = FetchType.LAZY)
+    private User user;
     @Column
     private int hits;
+
     @CreationTimestamp
     private Date timestamp;
 
+
     @Builder
-    public ContentVo(String title, String content, String writer, int hits) {
+    public ContentVo(String title, String content, User user, int hits) {
         this.title = title;
         this.content = content;
-        this.writer = writer;
+        this.user = user;
         this.hits = hits;
     }
 }

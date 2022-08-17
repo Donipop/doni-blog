@@ -19,13 +19,10 @@ public class User implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(length = 200,nullable = false)
     private Long id;
-
     @Column(length = 10)
     private String userName;
-
     @Column(length = 15)
     private String userPw;
-
     @Column(length = 20)
     @Enumerated(EnumType.STRING)
     private UserRole userRole;

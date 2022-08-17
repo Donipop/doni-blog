@@ -26,6 +26,7 @@ public class UserService {
     }
 
     public String userSignup(User user){
+
         //공백제거
         if(user.getUserName() == null || user.getUserName().length()<3 || user.getUserName().indexOf(" ") > 0){
             return "아이디 공백또는3자이하";
@@ -57,6 +58,7 @@ public class UserService {
             userInfo.setUserName(user.getUserName());
             userInfo.setUserRole(finduser.getUserRole());
             userInfo.setUserId(finduser.getId());
+            userInfo.setUser(user);
             //log.info("[{}]",finduser);
             //log.info("[{}] [{}] [{}]",userInfo.getUserName(),userInfo.getUserId(),userInfo.getUserRole());
             log.info("[{}] [{}] [{}]",finduser.getUserName(),finduser.getUserPw(),finduser.getId());

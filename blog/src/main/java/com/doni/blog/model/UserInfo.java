@@ -21,5 +21,6 @@ public class UserInfo implements Serializable {
     private String userName;
     private UserRole userRole;
     private Long userId;
+    private User user;
 
 }
