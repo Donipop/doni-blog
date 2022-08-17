@@ -17,7 +17,7 @@ public class BlogApplication {
 //		3. 스프링이랑 nodejs 연동
 //		4. js쓰는곳 page이동 -> 스프링 / 웹어플리케이션 [페이지 이동을 하는건 서버단[스프링]에서 진행하고 페이지를 이동하지 않고 그 페이지에서
 //		활동? 액션? 일어나는건 js에서 한다.
-//		mybatis[히카리cp]
+//		mybatis[히카리cp]안녕
 
 		//twtich , 아프리카 같은거 JAVA으로 방송하는 그거  만들고 스프링에서 html로 웹소켓 연결해서 보여주기
 	}
