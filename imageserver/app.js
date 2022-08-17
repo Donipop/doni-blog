@@ -2,15 +2,39 @@ const express = require('express');
 const fs = require('fs');
 
 const app = express();
-
-app.use(express.json());
-
 const port = 8000;
 
+app.use(express.json({
+    limit: "10mb"
+}));
 
-app.post('/single/upload', function(req,res){
-    console.log(req.body);
-    res.send(req.body);
+//정적파일 가상주소 적용
+//http://localhost:8000/img/name.jpeg
+app.use('/img', express.static('uploads')); 
+
+
+app.post('/single/upload', (req,res) => {
+    try{
+    //console.log(req.body);
+    let now = new Date();
+    let year = now.getFullYear();
+    let month = now.getMonth();
+    let date = now.getDate();
+    let hours = now.getHours();
+    let minutes = now.getMinutes();
+    let seconds = now.getSeconds();
+
+    let name = `${year}-${month}-${date}-${hours}-${minutes}-${seconds}-${req.body.name}`;
+    if(saveImage(name,req.body.base64,req.body.extension) == "ok"){
+        res.send(`http://localhost:8000/img/${name}.${req.body.extension}`);
+    }else{
+        res.send("err")
+    }
+    
+    }catch(err){
+        res.status(500);
+        res.send(err.message);
+    }
     //res.json({ok: true, data: "Single Upload Ok"})
 
 });
@@ -20,23 +44,14 @@ app.listen(port,() =>{
     console.log(`서버켜짐 ${port}`);
 })
 
-convertContent();
-function convertContent(){
-    let str = "";
-    let content = '<img style="width: 800px;" src="data:image/png;base64,123" data-filename="logo.png"> <br> <img style="width: 445.188px;" src="data:image/jpeg;base64,456" data-filename="logo.jpg">';//$('#summernote').summernote('code');
-    let imgcount = content.split('src="data:image/').length -1;
-    //content.split('src="data:image/').length -1;
-    //<img style="width: 800px;" src="data:image/png;base64,
-    //<img style="width: 445.188px;" src="data:image/jpeg;base64,
-    //" data-filename="logo.jpg">
+function saveImage(name,base64,extension){
+    let binaryData = new Buffer.from(base64,'base64').toString('binary');
     
-    for(let i=1; i<=imgcount; i++){
-        let base64img_0 = content.split(';base64,');
-        let base64img_1 = base64img_0[i].split('" data-filename');
-        console.log(base64img_1[0]);
-    }
+    console.log(`${__dirname}/uploads/${name}.${extension}저장`);
 
-    fs.writeFileSync("aa.jpg",data);
-    
-    
+    fs.writeFile(`${__dirname}/uploads/${name}.${extension}`,binaryData,'binary',function(err){
+        //console.log(err);
+        return err;
+    })
+    return "ok";
 }

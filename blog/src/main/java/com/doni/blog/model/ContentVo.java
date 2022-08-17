@@ -15,6 +15,7 @@ import java.util.Date;
 @Getter
 @Setter
 @NoArgsConstructor
+@Table(name = "Content")
 public class ContentVo implements Serializable {
 
     @Id
@@ -22,20 +23,22 @@ public class ContentVo implements Serializable {
     @Column(length = 200,nullable = false)
     private long id;
     @Column
-    private String userId;
-    @Column
     private String title;
     @Column
     private String content;
+
+
+    private String writer;//글작성자
+    @Column
+    private int hits;
     @CreationTimestamp
     private Date timestamp;
 
     @Builder
-    public ContentVo(long id, String userId, String title, String content, Date timestamp) {
-        this.id = id;
-        this.userId = userId;
+    public ContentVo(String title, String content, String writer, int hits) {
         this.title = title;
         this.content = content;
-        this.timestamp = timestamp;
+        this.writer = writer;
+        this.hits = hits;
     }
 }

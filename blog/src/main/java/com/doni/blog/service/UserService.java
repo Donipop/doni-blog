@@ -55,13 +55,19 @@ public class UserService {
 
         if(Objects.equals(user.getUserPw(), finduser.getUserPw())){
             userInfo.setUserName(user.getUserName());
-            userInfo.setUserRole(user.getUserRole());
-            log.info("[{}]",finduser);
+            userInfo.setUserRole(finduser.getUserRole());
+            userInfo.setUserId(finduser.getId());
+            //log.info("[{}]",finduser);
+            //log.info("[{}] [{}] [{}]",userInfo.getUserName(),userInfo.getUserId(),userInfo.getUserRole());
             log.info("[{}] [{}] [{}]",finduser.getUserName(),finduser.getUserPw(),finduser.getId());
             log.info(userSession.createSession(user,request,response));
             return "로그인 성공";
         }
 
         return "로그인 실패";
+    }
+
+    public String userFind(String username){
+        return String.valueOf(userRepository.findByUserName(username));
     }
 }

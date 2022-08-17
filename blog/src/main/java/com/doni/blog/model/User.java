@@ -5,7 +5,9 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -30,6 +32,8 @@ public class User implements Serializable {
 
     @CreationTimestamp
     private Date timestamp;
+
+
     @Builder
     public User(Long id, String userName, String userPw, UserRole userRole) {
         this.id = id;
