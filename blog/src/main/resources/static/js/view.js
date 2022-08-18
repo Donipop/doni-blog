@@ -2,6 +2,15 @@
     createView();
 }*/
 function addDiv(title,content,user,hits,timestamp) {
+        //내용에 <p> <br> <img>등 태그삭제
+
+        let img;
+        if(content.split('<img src=').length -1 > 0){
+            img = ((content.split('<img src="'))[1].split('"'))[0];
+        }else{
+            img = 'http://gdimg.gmarket.co.kr/2147431261/still/600?ver=1624429655';
+        }
+        content = content.replace(/(<([^>]+)>)/gi,"");
 
         let div = document.createElement("div");
         div.className="col";
@@ -9,9 +18,11 @@ function addDiv(title,content,user,hits,timestamp) {
 
         let str = '';
         str += '<div class="card shadow-sm">'
-        str += `<svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">${title}</text></svg>`
+    //<img class="card-img-top" src="..." alt="Card image cap">
+        str += `<img class="card-img-top" width="100%" height="225" src="${img}" alt="Card image cap">`
         str += '<div class="card-body">'
-        str += `<p class="card-text">${content}</p>`
+        str += `<h5 class="card-title">${title}</h5>
+                <p class="card-text">${content}</p>`
         str += '<div class="d-flex justify-content-between align-items-center">'
         str += '<div class="btn-group">'
         str += '<button type="button" class="btn btn-sm btn-outline-secondary">View</button>'
