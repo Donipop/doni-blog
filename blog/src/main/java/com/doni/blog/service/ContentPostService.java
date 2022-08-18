@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Slf4j
@@ -38,9 +39,18 @@ public class ContentPostService {
         return "ok";
     }
     @Transactional
-    public List<ContentDto> getContent(){
-        List<ContentVo> contentVos = contentRepository.findAll();
+    public List<ContentDto> getContent(String username){
+
+        User finduser = userRepository.findByUserName(username);
+        List<ContentVo> contentVos = null;
         List<ContentDto> contentList = new ArrayList<>();
+
+        if(username == null || username.equals("")){
+            contentVos = contentRepository.findAll();
+        }else{
+            contentVos = contentRepository.findAllByUser(finduser);
+        }
+
 
         for(ContentVo contentVo : contentVos){
             ContentDto contentDto = ContentDto.builder()

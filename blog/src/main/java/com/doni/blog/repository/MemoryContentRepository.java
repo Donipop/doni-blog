@@ -1,6 +1,7 @@
 package com.doni.blog.repository;
 
 import com.doni.blog.model.ContentVo;
+import com.doni.blog.model.User;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -75,6 +76,11 @@ public class MemoryContentRepository implements ContentRepository{
     @Override
     public Optional<ContentVo> findById(Long aLong) {
         return Optional.empty();
+    }
+
+    @Override
+    public List<ContentVo> findAllByUser(User user) {
+        return null;
     }
 
     @Override
