@@ -1,5 +1,6 @@
 package com.doni.blog.service;
 
+import com.doni.blog.model.ContentDto;
 import com.doni.blog.model.ContentVo;
 import com.doni.blog.model.User;
 import com.doni.blog.model.UserInfo;
@@ -8,8 +9,11 @@ import com.doni.blog.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @Slf4j
@@ -25,11 +29,30 @@ public class ContentPostService {
         this.userRepository = userRepository;
     }
 
-    public String ContentPost(ContentVo contentVo){
+    @Transactional
+    public String contentPost(ContentVo contentVo){
         User finduser = userRepository.findByUserName(userInfo.getUserName());
         contentVo.setUser(finduser);
         log.info("요기요기" + finduser.getId() + "/" + userInfo.getUserId());
         contentRepository.save(contentVo);
         return "ok";
+    }
+    @Transactional
+    public List<ContentDto> getContent(){
+        List<ContentVo> contentVos = contentRepository.findAll();
+        List<ContentDto> contentList = new ArrayList<>();
+
+        for(ContentVo contentVo : contentVos){
+            ContentDto contentDto = ContentDto.builder()
+                    .id(contentVo.getId())
+                    .title(contentVo.getTitle())
+                    .content(contentVo.getContent())
+                    .hits(contentVo.getHits())
+                    .user(contentVo.getUser().getId())
+                    .timestamp(contentVo.getTimestamp())
+                    .build();
+            contentList.add(contentDto);
+        }
+        return contentList;
     }
 }

@@ -34,7 +34,7 @@ public class PostController {
     public void postPost(Model model, @ModelAttribute("ContentVo") ContentVo contentVo){
         model.addAttribute("ContentVo", contentVo);
         //log.info(userInfo.getUserId() + "여기여기여기여기여기");
-        contentPostService.ContentPost(contentVo);
+        contentPostService.contentPost(contentVo);
         log.info(contentVo.getTitle() + "/" + contentVo.getContent() + "/");
         //return "post";
     }
