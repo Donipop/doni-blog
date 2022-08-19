@@ -31,18 +31,17 @@ public class ContentPostService {
     }
 
     @Transactional
-    public String contentPost(ContentVo contentVo){
+    public void contentPost(ContentVo contentVo){
         User finduser = userRepository.findByUserName(userInfo.getUserName());
         contentVo.setUser(finduser);
         log.info("요기요기" + finduser.getId() + "/" + userInfo.getUserId());
         contentRepository.save(contentVo);
-        return "ok";
     }
     @Transactional
     public List<ContentDto> getContent(String username){
 
         User finduser = userRepository.findByUserName(username);
-        List<ContentVo> contentVos = null;
+        List<ContentVo> contentVos;
         List<ContentDto> contentList = new ArrayList<>();
 
         if(username == null || username.equals("")){
@@ -64,5 +63,9 @@ public class ContentPostService {
             contentList.add(contentDto);
         }
         return contentList;
+    }
+    @Transactional
+    public Optional<ContentVo> getContentNum(Long num){
+        return contentRepository.findById(num);
     }
 }

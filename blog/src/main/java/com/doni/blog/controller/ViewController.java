@@ -1,11 +1,9 @@
 package com.doni.blog.controller;
 
 import com.doni.blog.model.ContentDto;
-import com.doni.blog.model.ContentVo;
 import com.doni.blog.service.ContentPostService;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonObject;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
-import java.util.Objects;
 
 @Slf4j
 @Controller

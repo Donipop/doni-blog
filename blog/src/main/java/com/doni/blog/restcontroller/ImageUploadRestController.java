@@ -33,10 +33,10 @@ public class ImageUploadRestController {
         outputStream.flush();
         outputStream.close();
 
-        int responseCode = connection.getResponseCode();
+        //var responseCode = connection.getResponseCode();
 
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-        StringBuffer stringBuffer = new StringBuffer();
+        StringBuilder stringBuffer = new StringBuilder();
         String inputLine;
 
         while ((inputLine = bufferedReader.readLine()) != null){

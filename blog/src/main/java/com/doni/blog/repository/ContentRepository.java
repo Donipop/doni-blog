@@ -12,4 +12,5 @@ public interface ContentRepository extends JpaRepository<ContentVo,Long> {
     Optional<ContentVo> findById(Long id);
 
     List<ContentVo> findAllByUser(User user);
+
 }

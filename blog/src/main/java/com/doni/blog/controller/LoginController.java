@@ -45,7 +45,7 @@ public class LoginController {
             log.info("로그인성공");
             model.addAttribute("username", userInfo.getUserName());
             model.addAttribute("logincheck",true);
-            return "blog";
+            return "redirect:blog";
         }else{
             model.addAttribute("data",true);
             model.addAttribute("datatext", valueUserLogin);
