@@ -68,4 +68,10 @@ public class ContentPostService {
     public Optional<ContentVo> getContentNum(Long num){
         return contentRepository.findById(num);
     }
+
+    @Transactional
+    public void deleteContent(Long num){
+        contentRepository.deleteById(num);
+    }
+
 }

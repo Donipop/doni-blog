@@ -17,7 +17,5 @@ A
 blog/build.gradle,f\b\fbef1d3dc54ff33ac0b073e85b2b03657941dce1
 u
 Eblog/src/main/java/com/doni/blog/repository/MemoryUserRepository.java,8\0\802346931fcc56938d23937dd08cff046171e8cf
-e
-5blog/src/main/java/com/doni/blog/BlogApplication.java,2\1\2154afb4dc1b0ad8354b04ee96d47373bc2bf639
 B
 imageserver/app.js,c\6\c6c42e49901333c05d3880952e1c40beff875721
