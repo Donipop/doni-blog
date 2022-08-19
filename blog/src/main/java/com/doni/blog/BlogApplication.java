@@ -12,7 +12,7 @@ public class BlogApplication {
 		//https://bootswatch.com/cyborg/
 
 
-//		1. 게시판CRUD //CR완성
+//		1. 게시판CRUD //CRD완성
 //		2. 파일 입출력 [내 서버에 직접 폴더에 업로드, nas같은 파일서버?]
 //		3. 스프링이랑 nodejs 연동
 //		4. page이동 -> 스프링 / 웹어플리케이션 [페이지 이동을 하는건 서버단[스프링]에서 진행하고 페이지를 이동하지 않고 그 페이지에서

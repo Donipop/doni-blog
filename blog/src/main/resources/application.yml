@@ -28,11 +28,9 @@ spring:
     cache: false
     mvc:
       static-path-pattern: "/static/**"
-
   devtools:
     restart:
       enabled: true
-
 logging:
   file:
     name: ../log/test.log  # 로깅 파일 위치이다.
