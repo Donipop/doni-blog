@@ -75,7 +75,7 @@ public class MemoryContentRepository implements ContentRepository{
 
     @Override
     public Optional<ContentVo> findById(Long aLong) {
-        return Optional.empty();
+        return null;
     }
 
     @Override

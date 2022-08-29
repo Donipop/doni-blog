@@ -1,7 +1,7 @@
 /*window.onload = function (){
     createView();
 }*/
-function addDiv(title,content,user,hits,timestamp) {
+function addDiv(title,content,user,hits,timestamp,id) {
         //내용에 <p> <br> <img>등 태그삭제
 
         let img;
@@ -25,8 +25,9 @@ function addDiv(title,content,user,hits,timestamp) {
                 <p class="card-text">${content}</p>`
         str += '<div class="d-flex justify-content-between align-items-center">'
         str += '<div class="btn-group">'
-        str += '<button type="button" class="btn btn-sm btn-outline-secondary">View</button>'
-        str += '<button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>'
+        str += '<button type="button" class="btn btn-sm btn-outline-secondary" onclick="viewButton('+ id + ')">View</button>'
+
+        str += '<button type="button" class="btn btn-sm btn-outline-secondary" onclick="editButton('+ id + ')">Edit</button>'
         str += '</div>'
         str += `<small class="text-muted">${timestamp}</small>`
         str += '</div></div></div></div>'
@@ -46,7 +47,8 @@ function createView(username){
             obj[i].content,
             obj[i].user,
             obj[i].hits,
-            obj[i].timestamp);
+            obj[i].timestamp,
+            obj[i].id);
     }
 }
 
@@ -64,4 +66,10 @@ function getView(username){
         }
     });
     return result;
+}
+function editButton(id){
+    location.href="/post?contentid=" + id;
+}
+function viewButton(id){
+    location.href="/post?view&contentid=" + id;
 }

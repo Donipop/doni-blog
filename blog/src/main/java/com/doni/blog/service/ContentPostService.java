@@ -65,6 +65,11 @@ public class ContentPostService {
         return contentList;
     }
     @Transactional
+    public void updateContentPost(ContentVo contentVo){
+        log.info("게시글 수정");
+        contentRepository.save(contentVo);
+    }
+    @Transactional
     public Optional<ContentVo> getContentNum(Long num){
         return contentRepository.findById(num);
     }
