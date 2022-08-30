@@ -93,7 +93,8 @@
         <script>
           $('')
         </script>
-      <button type="button" class="btn btn-secondary" id="btn" onclick="createPost();">글쓰기</button>
+      <button type="button" class="btn btn-secondary" id="btn" onclick="createPost();" th:if="${model.getPostcheck().toString().equals('0')}">글쓰기</button>
+      <button type="button" class="btn btn-secondary" id="btn2" th:onclick="'javascript:updatePost(' + ${ContentVo.getId()} + ');'" th:if="${model.getPostcheck().toString().equals('1')}">수정하기</button>
 
     </div>
 

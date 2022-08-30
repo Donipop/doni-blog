@@ -4,6 +4,39 @@ function createPost(){
     let mark = convertContent();//$('#summernote').summernote('code');//
     sendPost({title: title, content: mark});
 }
+function updatePost(id){
+    console.log("업데이트 post 진입!!!!!");
+    const content_title = document.getElementById('content-title');
+    let title = content_title.value;
+    let mark = convertContent();//$('#summernote').summernote('code');//
+    sendUpdatePost({title: title, content: mark, id: id});
+}
+function sendUpdatePost(parm){
+    let form = document.createElement("form");
+    form.setAttribute("method","POST");
+    form.setAttribute("action","/post?contentid=" + parm.id);
+    form.setAttribute("onsubmit","return false;");
+
+    for(const key in parm){
+        let hidden = document.createElement("input");
+        hidden.setAttribute("type","hidden");
+        hidden.setAttribute("name",key);
+        hidden.setAttribute("value",parm[key]);
+        form.appendChild(hidden);
+        /*
+        //이렇게도 가능
+        const formField = document.createElement('input');
+        formField.type = 'hidden';
+        formField.name = key;
+        formField.value = parameters[key];
+
+        form.appendChild(formField);
+        */
+    }
+    document.body.appendChild(form);
+    form.submit();
+
+}
 function sendPost(parm){
     let form = document.createElement("form");
     form.setAttribute("method","POST");

@@ -31,7 +31,6 @@ public class ContentVo implements Serializable {
     @CreationTimestamp
     private Date timestamp;
 
-
     @Builder
     public ContentVo(String title, String content, User user, int hits) {
         this.title = title;
