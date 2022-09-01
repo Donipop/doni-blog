@@ -37,7 +37,6 @@ function addDiv(title,content,user,hits,timestamp,id) {
 }
 
 function createView(username){
-    console.log('create!2');
     //뷰를 가져옴
     let resultjson = getView(username);
     let obj = JSON.parse(resultjson);

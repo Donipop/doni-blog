@@ -1,7 +1,7 @@
 function createPost(){
     const content_title = document.getElementById('content-title');
     let title = content_title.value;
-    let mark = convertContent();//$('#summernote').summernote('code');//
+    let mark = convertContent();
     sendPost({title: title, content: mark});
 }
 function updatePost(id){
@@ -37,6 +37,26 @@ function sendUpdatePost(parm){
     form.submit();
 
 }
+function deletePost(id){
+    $.ajax({
+        type: "get",
+        url: "post",
+        data: {deleteid: id},
+        success : function (data){
+            result = data;
+        },
+        error : function (e){
+            console.log('delete 오류!!' + e)
+        }
+    })
+    location.replace('/blog');
+}
+function loadPost(contentVo){
+    let title = '';
+    let content = contentVo.content;
+    let mark = 'hello world';
+    $('#summernote').summernote('code', mark);
+}
 function sendPost(parm){
     let form = document.createElement("form");
     form.setAttribute("method","POST");
@@ -71,7 +91,7 @@ function convertContent(){
         //이미지base64값 가져오기 base64img_1[0] = base64이미지값
         let base64img_0 = content.split(';base64,');
         let base64img_1 = base64img_0[i].split('" data-filename=\"');
-        //<img style = ~~~~~ ">기준으로 파싱
+        //<img src = ~~~~~ ">기준으로 파싱
         let content_split0 = content.split('<img src=');
         let content_split1 = content_split0[i].split('\">');
 
@@ -103,7 +123,7 @@ function convertContent(){
     return str;
 }
 function sendImageServer(imgjson){
-    var result;
+    let result;
     $.ajax({
         type: "post",
         url: "/imageupload",

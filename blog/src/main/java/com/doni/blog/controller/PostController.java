@@ -29,7 +29,13 @@ public class PostController {
     private modelclass modelc = new modelclass();
 
     @GetMapping("post")
-    public String postGet(Model model, ContentVo contentVo,@RequestParam(required = false) Integer contentid){
+    public String postGet(Model model, ContentVo contentVo,@RequestParam(required = false) Integer contentid,@RequestParam(required = false) Integer deleteid){
+        if(deleteid != null){
+            contentPostService.deleteContent(Long.valueOf(deleteid));
+            log.info(deleteid + " 삭제!");
+            //return "blog";
+        }
+
         if(contentid != null){
 //            업데이트
             Optional<ContentVo> cc = contentPostService.getContentNum(Long.valueOf(contentid));
